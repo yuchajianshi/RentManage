@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window caption="0,0,0,30" roundcorner="5,5,5,5" sizebox="4,4,4,4" mininfo="600,320">
+    <Font id="0" name="宋体" size="15" bold="false"/>
+    <Font id="1" name="宋体" size="12"/>
+    <Default shared="true" name="Button" value="width=&quot;26&quot; height=&quot;25&quot; normalimage=&quot;file='blue_static.png'&quot; hotimage=&quot;file='blue_hover.png'&quot; pushedimage=&quot;file='blue_active'&quot;"/>
+    <Default shared="true" name="Option" value="textcolor=&quot;#FFbac0c5&quot; align=&quot;center&quot; selectedtextcolor=&quot;#FF000000&quot; disabledtextcolor=&quot;#FFbac0c5&quot; textpadding=&quot;0,0,0,0&quot; hotimage=&quot;file='blue_hover.png'&quot; selectedimage=&quot;file='blue_active.png'&quot; normalimage=&quot;file='black_static.png'&quot;"/>
+    <Include source="scrollbar.xml" />
+    <VerticalLayout name="v1" bkimage="mainframe.png">
+        <HorizontalLayout name="h1-1" height="24">
+            <HorizontalLayout name="h1-1-1">
+            </HorizontalLayout>
+            <HorizontalLayout name="h1-1-2" width="80" >
+                <Button name="btn_min" maxwidth="26" maxheight="20" normalimage="file='min_static.png'" hotimage="file='min_hover.png'" pushedimage="file='min_active.png'"/>
+                <Button name="btn_max" maxwidth="26" maxheight="20" normalimage="file='max_static.png'" hotimage="file='max_hover.png'" pushedimage="file='max_active.png'"/>
+                <Button name="btn_restore" visible="false" maxwidth="26" maxheight="20" normalimage="file='max_static.png'" hotimage="file='max_hover.png'" pushedimage="file='max_active.png'"/>
+                <Button name="btn_close" maxwidth="42" maxheight="20" normalimage="file='close_static.png'" hotimage="file='close_hover.png'" pushedimage="file='close_active.png'"/>
+            </HorizontalLayout>
+        </HorizontalLayout>
+        <HorizontalLayout name="h2-1">
+            <VerticalLayout name="h2-1-1" width="140">
+                <Option name="opt_rentinfo" text="租赁信息管理" width="100" height="50" font="1" padding="20,10,0,0" group="infotype" selected="true"/>
+                <Option name="opt_filminfo" text="片源信息管理" width="100" height="50" font="1" padding="20,10,0,0" group="infotype"/>
+                <Option name="opt_actorinfo" text="演员信息管理" width="100" height="50" font="1" padding="20,10,0,0" group="infotype"/>
+            </VerticalLayout>
+            <TabLayout name="tabs">
+                <HorizontalLayout name="h2-1-2-1">
+                    <RentInfo name="rent_info"/>
+                </HorizontalLayout>
+                <HorizontalLayout name="h2-1-2-2">
+                    <FilmInfo name="film_info"/>
+                </HorizontalLayout>
+                <HorizontalLayout name="h2-1-2-3">
+                    <ActorInfo name="actor_info"/>
+                </HorizontalLayout>
+            </TabLayout>
+        </HorizontalLayout>
+    </VerticalLayout>
+</Window>

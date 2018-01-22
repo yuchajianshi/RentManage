@@ -2543,6 +2543,11 @@ SIZE CListTextElementUI::EstimateSize(SIZE szAvailable)
     return m_cxyFixedLast;
 }
 
+SIZE CListTextElementUI::GetItemSize()
+{
+	return m_cxyFixedLast;
+}
+
 void CListTextElementUI::DrawItemText(HDC hDC, const RECT& rcItem)
 {
     if( m_pOwner == NULL ) return;

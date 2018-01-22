@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window size="190,184" caption="0,0,0,30" sizebox="4,4,4,4">
+    <Font id="0" name="宋体" size="15" bold="false"/>
+    <Font id="1" name="宋体" size="12"/>
+    <Default shared="true" name="Button" value="width=&quot;26&quot; height=&quot;25&quot; normalimage=&quot;file='blue_static.png'&quot; hotimage=&quot;file='blue_hover.png'&quot; pushedimage=&quot;file='blue_active'&quot;"/>
+    <VerticalLayout bkcolor="#FF80FFFF" roundcorner="5,5,5,5">
+        <HorizontalLayout height="24" bkcolor="#FF008080">
+            <HorizontalLayout>
+                <Label text="新的租赁信息" width="80" height="20" align="center"/>
+            </HorizontalLayout>
+            <HorizontalLayout width="30" >
+                <Button name="btn_close" width="26" height="20" normalimage="file='close_static.png'" hotimage="file='close_hover.png'" pushedimage="file='close_active.png'"/>
+            </HorizontalLayout>
+        </HorizontalLayout>
+        <HorizontalLayout>
+            <VerticalLayout width="70" height="120">
+                <Label text="电影名" font="1" padding="10,10,0,0" width="50" height="20"/>
+                <Label text="租借人" font="1" padding="10,10,0,0" width="50" height="20"/>
+                <Label text="借出时长" font="1" padding="10,10,0,0" width="50" height="20"/>
+                <Label text="负责员工" font="1" padding="10,10,0,0" width="50" height="20"/>
+            </VerticalLayout>
+            <VerticalLayout width="120" height="120">
+                <ComboBox name="film_name" font="1" width="100" height="30" itemalign="center" padding="10,10,0,0" dropboxsize="0,100" vscrollbar="true" corner="2,2,2,2" bkcolor="#FF16A085" textcolor="#FFFFFFFF" itembkcolor="#FF34495E" itemtextcolor="#FFFFFFFF" itemhotbkcolor="#FF8ED9CA" itemhottextcolor="#FFFFFFFF" itemselectedbkcolor="#FF1ABC9C" itemselectedtextcolor="#FFFFFFFF"/>
+                <Edit name="rentor" font="1" padding="10,10,0,0" width="100" height="20"/>
+                <Edit name="rent_time" font="1" padding="10,10,0,0" width="100" height="20"/>
+                <Edit name="clerk" font="1" padding="10,10,0,0" width="100" height="20"/>
+            </VerticalLayout>
+        </HorizontalLayout>
+        <HorizontalLayout width="190" height="40">
+            <Button name="rent_ok" text="确定" font="1" padding="70,10,0,0" width="50" height="20"/>
+        </HorizontalLayout>
+    </VerticalLayout>
+</Window>

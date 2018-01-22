@@ -28,3 +28,15 @@ FlashDemo/FlashDemo.vcproj.wengmq-PC.wengmq.user
 QQDemo/Debug/mt.dep
 *.dep
 *.map
+*.exe
+ipch/
+lib/
+*.iobj
+*.ipdb
+*.ilk
+*.aps
+*Debug/
+*Release/
+*.opendb
+*.db
+.vs/

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window caption="0,0,0,30" roundcorner="5,5,5,5" sizebox="4,4,4,4" mininfo="600,320">
+    <Font id="0" name="宋体" size="13" bold="false"/>
+    <Font id="1" name="宋体" size="12"/>
+    <Default shared="true" name="Button" value="width=&quot;26&quot; height=&quot;25&quot; normalimage=&quot;file='button.bmp' source='0,0,67,22'&quot; hotimage=&quot;file='button.bmp' source='0,22,67,44'&quot; pushedimage=&quot;file='button.bmp' source='0,44,67,66'&quot;"/>
+    <Default shared="true" name="Option" value="textcolor=&quot;#FFbac0c5&quot; selectedtextcolor=&quot;#FF386382&quot; disabledtextcolor=&quot;#FFbac0c5&quot; textpadding=&quot;18,2,0,0&quot; align=&quot;left&quot; selectedimage=&quot;file='RadioBtnSel.png' source='0,0,13,13' dest='0,5,14,19'&quot; normalimage=&quot;file='RadioBtnNon.png' source='0,0,13,13' dest='0,5,14,19'&quot;" />
+    <Include source="scrollbar.xml" />
+    <VerticalLayout bkimage="bk.jpg">
+        <HorizontalLayout height="18">
+            <HorizontalLayout>
+            </HorizontalLayout>
+            <HorizontalLayout width="94" >
+                <Button name="minbtn" corner="2,2,2,2" maxwidth="26" maxheight="18" normalimage="file='frame_btn_min.bmp' source='0,0,26,18' mask='#FFFF00FF'" hotimage="file='frame_btn_min.bmp' source='26,0,52,18' mask='#FFFF00FF'" pushedimage="file='frame_btn_min.bmp' source='52,0,78,18' mask='#FFFF00FF'"/>
+                <Button name="maxbtn" maxwidth="26" maxheight="18" normalimage="file='frame_btn_max.bmp' source='0,0,26,18' mask='#FFFF00FF'" hotimage="file='frame_btn_max.bmp' source='26,0,52,18' mask='#FFFF00FF'" pushedimage="file='frame_btn_max.bmp' source='52,0,78,18' mask='#FFFF00FF'"/>
+                <Button name="restorebtn" visible="false" maxwidth="26" maxheight="18" normalimage="file='frame_btn_max.bmp' source='104,0,130,18' mask='#FFFF00FF'" hotimage="file='frame_btn_max.bmp' source='130,0,156,18' mask='#FFFF00FF'" pushedimage="file='frame_btn_max.bmp' source='156,0,182,18' mask='#FFFF00FF'" />
+                <Button name="closebtn" maxwidth="42" maxheight="18" normalimage="file='frame_btn_close_normal.bmp' mask='#FFFF00FF'" hotimage="file='frame_btn_close_hot.bmp' mask='#FFFF00FF'" pushedimage="file='frame_btn_close_down.bmp' mask='#FFFF00FF'"/>
+            </HorizontalLayout>
+        </HorizontalLayout>
+        <VerticalLayout>
+        </VerticalLayout>
+        <HorizontalLayout height="30">
+            <HorizontalLayout width="100">
+            </HorizontalLayout>
+            <HorizontalLayout>
+                <Button name="testbtn" font="0" text="测试按钮" width="70"/>
+                <ComboBox name="testcombo" font="1" text="测试组合框" width="100" height="25" bordersize="1" bordercolor="#FFFF0000" itemalign="center" padding="10,0,0,0" dropboxsize="0,100" vscrollbar="true" bkcolor="0xFF0082BF" corner="2,2,2,2"/>
+                <Edit name="testedit" font="1" text="测试文本框" width="70" height="25" bkcolor="#FFFFFFAA" padding="10,0,0,0"/>
+            </HorizontalLayout>
+        </HorizontalLayout>
+        <HorizontalLayout height="25">
+            <Option name="Option1" font="1" text="单选按钮1" width="100" padding="10,0,0,0" group="radiobtn" selected="true"/>
+            <Option name="Option2" font="1" text="单选按钮2" width="100" padding="10,0,0,0" group="radiobtn"/>
+            <Option name="Option3" font="1" text="单选按钮3" width="100" padding="10,0,0,0" group="radiobtn"/>
+        </HorizontalLayout>
+        <VerticalLayout>
+        </VerticalLayout>
+    </VerticalLayout>
+</Window>

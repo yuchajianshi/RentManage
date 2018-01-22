@@ -14,6 +14,7 @@ class CLoginFrameWnd : public CWindowWnd, public INotifyUI, public IMessageFilte
 {
 public:
     CLoginFrameWnd() { };
+	~CLoginFrameWnd() { };
     LPCTSTR GetWindowClassName() const { return _T("UILoginFrame"); };
     UINT GetClassStyle() const { return UI_CLASSSTYLE_DIALOG; };
     void OnFinalMessage(HWND /*hWnd*/) 

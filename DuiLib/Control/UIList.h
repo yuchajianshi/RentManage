@@ -402,6 +402,7 @@ public:
 
     void DoEvent(TEventUI& event);
     SIZE EstimateSize(SIZE szAvailable);
+	SIZE GetItemSize();
 
     void DrawItemText(HDC hDC, const RECT& rcItem);
 

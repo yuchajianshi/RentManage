@@ -251,7 +251,7 @@ void MainFrame::UpdateFriendsList()
 
 		item.id = _T("5");
 		item.folder = true;
-		item.empty = false;
+		item.empty = true;
 		item.nick_name = _T("Ä°ÉúÈË");
 		Node* root_parent3 = pFriendsList->AddNode(item, NULL);
 		friends_.push_back(item);
