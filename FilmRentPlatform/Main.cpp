@@ -4,6 +4,17 @@
 #include <atlbase.h>
 CComModule _Module;
 #include <atlwin.h>
+#include <crtdbg.h>
+
+#ifdef _DEBUG    
+#define DEBUG_CLIENTBLOCK new( _CLIENT_BLOCK, __FILE__, __LINE__)    
+#else    
+#define DEBUG_CLIENTBLOCK    
+#endif    
+#define _CRTDBG_MAP_ALLOC
+#ifdef _DEBUG
+#define new DEBUG_CLIENTBLOCK
+#endif
 
 #if defined(WIN32) && !defined(UNDER_CE)
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int nCmdShow)
@@ -11,6 +22,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*l
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lpCmdLine, int nCmdShow)
 #endif
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	CPaintManagerUI::SetInstance(hInstance);
 
 	HINSTANCE hInstRich = ::LoadLibrary(_T("Riched20.dll"));

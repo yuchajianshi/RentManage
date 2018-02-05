@@ -32,6 +32,6 @@ public:
 };
 
 enum {
-	OK,
-	CANCEL
+	RESULT_OK,
+	RESULT_CANCEL
 };

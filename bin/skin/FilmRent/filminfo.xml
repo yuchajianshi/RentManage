@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Window>
     <VerticalLayout>
-        <Button text="test2" height="20" width="50" padding="100,100,0,0"/>
+        <HorizontalLayout height="50">
+            <Label text="要搜索的列" font="1" padding="10,10,0,0" width="60" height="30" align="center" textcolor="#FFFFFFFF"/>
+            <ComboBox name="searchcategory2" font="1" width="70" height="30" itemalign="center" padding="10,10,0,0" dropboxsize="0,100" vscrollbar="true" corner="2,2,2,2" bkcolor="#FF16A085" textcolor="#FFFFFFFF" itembkcolor="#FF34495E" itemtextcolor="#FFFFFFFF" itemhotbkcolor="#FF8ED9CA" itemhottextcolor="#FFFFFFFF" itemselectedbkcolor="#FF1ABC9C" itemselectedtextcolor="#FFFFFFFF"/>
+            <Edit name="searchtext2" font="0" padding="10,10,0,0" width="200" height="30" bkcolor="#FF476022" textcolor="#FFFF8000" borderround="2,2"/>
+            <Button name="searchbtn2" padding="3,10,0,0" width="30" height="30" normalimage="search.png" hotimage=""/>
+        </HorizontalLayout>
+        <HorizontalLayout>
+            <List name="filmlist" height="250" width="700" bkcolor="#FFFFFFC0" itemshowhtml="true" vscrollbar="true" hscrollbar="true" itemalign="center" itembkcolor="#FFE2DDDF" itemaltbk="true" hscrollbar="false">
+            <ListHeader height="24" menu="true">
+                <ListHeaderItem text="序号" textcolor="FF000000" font="1" width="50" bordersize="1" bordercolor="#FFC3C3C3" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+                <ListHeaderItem text="电影名" textcolor="FF000000" font="1" width="150" bordersize="1" bordercolor="#FFC3C3C3" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+				<ListHeaderItem text="简介" textcolor="FF000000" font="1" width="150" bordersize="1" bordercolor="#FFC3C3C3" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+				<ListHeaderItem text="类型" textcolor="FF000000" font="1" width="50" bordersize="1" bordercolor="#FFC3C3C3" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+                <ListHeaderItem text="价格" textcolor="FF000000" font="1" width="50" bordersize="1" bordercolor="#FFC3C3C3" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+                <ListHeaderItem text="时长" textcolor="FF000000" font="1" width="50" bordersize="1" bordercolor="#FFC3C3C3" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+                <ListHeaderItem text="评级" textcolor="FF000000" font="1" width="50" bordersize="1" bordercolor="#FFC3C3C3" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+                <ListHeaderItem text="演员" textcolor="FF000000" font="1" width="150" bordersize="1" bordercolor="#FFC3C3C3" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+            </ListHeader>
+            </List>
+        </HorizontalLayout>
     </VerticalLayout>
 </Window>

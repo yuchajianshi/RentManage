@@ -30,6 +30,16 @@ UINT MainFrame::GetClassStyle() const
 	return UI_CLASSSTYLE_FRAME | CS_DBLCLKS;
 }
 
+UILIB_RESOURCETYPE MainFrame::GetResourceType() const
+{
+	return UILIB_ZIPRESOURCE;
+}
+
+LPCTSTR MainFrame::GetResourceID() const
+{
+	return MAKEINTRESOURCE(101);
+}
+
 void MainFrame::OnFinalMessage(HWND hWnd)
 {
 	WindowImplBase::OnFinalMessage(hWnd);

@@ -1,6 +1,14 @@
 #include "stdafx.h"
 #include "GlobalClass.h"
 
+GlobalClass::Collection::~Collection()
+{
+	if (GlobalClass::m_pInstance)
+	{
+		delete GlobalClass::m_pInstance;
+	}
+}
+
 GlobalClass::GlobalClass()
 {
 	driver = nullptr;
@@ -25,6 +33,7 @@ GlobalClass::~GlobalClass()
 }
 
 GlobalClass *GlobalClass::m_pInstance = nullptr;
+GlobalClass::Collection GlobalClass::m_collect;
 
 GlobalClass *GlobalClass::GetInstance()
 {

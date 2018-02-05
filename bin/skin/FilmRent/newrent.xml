@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Window size="190,184" caption="0,0,0,30" sizebox="4,4,4,4">
+<Window size="200,184" caption="0,0,0,30" sizebox="4,4,4,4">
     <Font id="0" name="宋体" size="15" bold="false"/>
     <Font id="1" name="宋体" size="12"/>
     <Default shared="true" name="Button" value="width=&quot;26&quot; height=&quot;25&quot; normalimage=&quot;file='blue_static.png'&quot; hotimage=&quot;file='blue_hover.png'&quot; pushedimage=&quot;file='blue_active'&quot;"/>
@@ -19,14 +19,17 @@
                 <Label text="借出时长" font="1" padding="10,10,0,0" width="50" height="20"/>
                 <Label text="负责员工" font="1" padding="10,10,0,0" width="50" height="20"/>
             </VerticalLayout>
-            <VerticalLayout width="120" height="120">
-                <ComboBox name="film_name" font="1" width="100" height="30" itemalign="center" padding="10,10,0,0" dropboxsize="0,100" vscrollbar="true" corner="2,2,2,2" bkcolor="#FF16A085" textcolor="#FFFFFFFF" itembkcolor="#FF34495E" itemtextcolor="#FFFFFFFF" itemhotbkcolor="#FF8ED9CA" itemhottextcolor="#FFFFFFFF" itemselectedbkcolor="#FF1ABC9C" itemselectedtextcolor="#FFFFFFFF"/>
-                <Edit name="rentor" font="1" padding="10,10,0,0" width="100" height="20"/>
-                <Edit name="rent_time" font="1" padding="10,10,0,0" width="100" height="20"/>
-                <Edit name="clerk" font="1" padding="10,10,0,0" width="100" height="20"/>
+            <VerticalLayout width="130" height="120">
+                <ComboBox name="film_name" font="1" width="120" height="20" itemalign="center" padding="0,10,0,0" dropboxsize="0,100" vscrollbar="true" corner="2,2,2,2" bkcolor="#FF16A085" textcolor="#FFFFFFFF" itembkcolor="#FF34495E" itemtextcolor="#FFFFFFFF" itemhotbkcolor="#FF8ED9CA" itemhottextcolor="#FFFFFFFF" itemselectedbkcolor="#FF1ABC9C" itemselectedtextcolor="#FFFFFFFF"/>
+                <ComboBox name="rentor" font="1" width="120" height="20" itemalign="center" padding="0,10,0,0" dropboxsize="0,100" vscrollbar="true" corner="2,2,2,2" bkcolor="#FF16A085" textcolor="#FFFFFFFF" itembkcolor="#FF34495E" itemtextcolor="#FFFFFFFF" itemhotbkcolor="#FF8ED9CA" itemhottextcolor="#FFFFFFFF" itemselectedbkcolor="#FF1ABC9C" itemselectedtextcolor="#FFFFFFFF"/>
+                <HorizontalLayout>
+                    <Edit name="rent_time" font="1" padding="0,10,0,0" width="90" height="20"/>
+                    <Label text="天" font="1" padding="10,10,0,0" width="20" height="20"/>
+                </HorizontalLayout>
+                <Edit name="clerk" font="1" padding="0,10,0,0" width="120" height="20"/>
             </VerticalLayout>
         </HorizontalLayout>
-        <HorizontalLayout width="190" height="40">
+        <HorizontalLayout width="200" height="40">
             <Button name="rent_ok" text="确定" font="1" padding="70,10,0,0" width="50" height="20"/>
         </HorizontalLayout>
     </VerticalLayout>

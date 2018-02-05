@@ -2,6 +2,7 @@
 #include "RentInfoUI.h"
 #include "NewRentInfoUI.h"
 #include "GlobalClass.h"
+#include <algorithm>
 
 CRentInfoUI::CRentInfoUI()
 {
@@ -83,7 +84,7 @@ void CRentInfoUI::UpdateRentInfoList()
 				_T("INNER JOIN film ")
 				_T("ON inventory.film_id=film.film_id ")
 				_T("INNER JOIN staff f ")
-				_T("ON r.staff_id=f.staff_id ");
+				_T("ON r.staff_id=f.staff_id ORDER BY rental_id ");
 			res = stmt->executeQuery(querystring);
 			while (res->next())
 			{
@@ -121,7 +122,6 @@ void CRentInfoUI::UpdateRentInfoList()
 
 LPCTSTR CRentInfoUI::GetItemText(CControlUI* pControl, int iIndex, int iSubItem)
 {
-	
 	switch (iSubItem)
 	{
 	case 0:
@@ -157,6 +157,7 @@ bool CRentInfoUI::OnSearch(void *para)
 	TNotifyUI* pMsg = (TNotifyUI*)para;
 	if (pMsg->sType == DUI_MSGTYPE_CLICK)
 	{
+		SQLString strTemp;
 		CComboUI *pCombo = static_cast<CComboUI *>(m_pManager->FindControl(_T("searchcategory")));
 		int sel = pCombo->GetCurSel();
 		CEditUI *pEdit = static_cast<CEditUI *>(m_pManager->FindControl(_T("searchtext")));
@@ -193,7 +194,10 @@ bool CRentInfoUI::OnSearch(void *para)
 				{
 					for (int i = 0; i < rentinfo.size(); i++)
 					{
-						if (rentinfo[i].filmname == strSearchText.GetData())
+						strTemp = rentinfo[i].filmname;
+						transform(strTemp->begin(), strTemp->end(), strTemp->begin(), tolower);
+						strSearchText.MakeLower();
+						if (strTemp == strSearchText.GetData())
 						{
 							if (rentinfo[i].pListElement != nullptr)
 							{
@@ -211,7 +215,7 @@ bool CRentInfoUI::OnSearch(void *para)
 					break;
 				}
 				case 2:
-				{
+				{     
 					for (int i = 0; i < rentinfo.size(); i++)
 					{
 						if (rentinfo[i].pListElement != nullptr)
@@ -221,7 +225,10 @@ bool CRentInfoUI::OnSearch(void *para)
 					}
 					for (int i = 0; i < rentinfo.size(); i++)
 					{
-						if (rentinfo[i].rentor == strSearchText.GetData())
+						strTemp = rentinfo[i].rentor;
+						transform(strTemp->begin(), strTemp->end(), strTemp->begin(), tolower);
+						strSearchText.MakeLower();
+						if (strTemp == strSearchText.GetData())
 						{
 							pList->SetScrollPos(CDuiSize(0, (rentinfo[i].index - 1) * itemsize.cy));
 							break;
@@ -271,7 +278,10 @@ bool CRentInfoUI::OnSearch(void *para)
 				{
 					for (int i = 0; i < rentinfo.size(); i++)
 					{
-						if (rentinfo[i].clerk == strSearchText.GetData())
+						strTemp = rentinfo[i].clerk;
+						transform(strTemp->begin(), strTemp->end(), strTemp->begin(), tolower);
+						strSearchText.MakeLower();
+						if (strTemp == strSearchText.GetData())
 						{
 							if (rentinfo[i].pListElement != nullptr)
 							{
@@ -307,10 +317,125 @@ bool CRentInfoUI::OnAddNewRent(void *para)
 		pNewRent->Create(m_pManager->GetPaintWindow(), _T(""), UI_WNDSTYLE_DIALOG, 0, 0, 0, 0, 0, NULL);
 		pNewRent->CenterWindow();
 		pNewRent->ShowModal();
-		if (pNewRent->returntype == OK)
+		if (pNewRent->returntype == RESULT_OK)
 		{
+			Statement *stmt = nullptr;
+			ResultSet *res = nullptr;
+			try
+			{
+				GlobalClass *pGlobalClass = GlobalClass::GetInstance();
+				if (pGlobalClass->con != nullptr)
+				{
+					stmt = pGlobalClass->con->createStatement();
+					CDuiString strTemp;
+					SQLString querystring;
 
+					stmt->execute(_T("START TRANSACTION"));
+
+					querystring = _T("SELECT film_id FROM film WHERE title = '");
+					querystring += (LPCTSTR)pNewRent->filmname;
+					querystring += _T("'");
+					res = stmt->executeQuery(querystring);
+					int filmid;
+					if (res->next())
+					{
+						filmid = res->getInt(_T("film_id"));
+						delete res;
+					}
+					else
+					{
+						goto destroy;
+					}
+
+					querystring = _T("SELECT store_id FROM store LIMIT 1");
+					res = stmt->executeQuery(querystring);
+					int storeid;
+					if (res->next())
+					{
+						storeid = res->getInt(_T("store_id"));
+						delete res;
+					}
+					else
+					{
+						goto destroy;
+					}
+
+					querystring = _T("INSERT INTO inventory(film_id, store_id) VALUES");
+					strTemp.Format(_T("(%d, %d)"), filmid, storeid);
+					querystring += (LPCTSTR)strTemp;
+					stmt->execute(querystring);
+
+					querystring = _T("SELECT inventory_id FROM inventory ORDER BY inventory_id DESC LIMIT 1");
+					res = stmt->executeQuery(querystring);
+					int inventoryid;
+					if (res->next())
+					{
+						inventoryid = res->getInt(_T("inventory_id"));
+   						delete res;
+					}
+					else
+					{
+						stmt->execute(_T("ROLLBACK"));
+						goto destroy;
+					}
+
+					querystring = _T("SELECT customer_id FROM customer WHERE STRCMP(CONCAT(first_name,' ',last_name), '");
+					querystring += (LPCTSTR)pNewRent->rentor;
+					querystring += _T("') = 0");
+					res = stmt->executeQuery(querystring);
+					int customerid;
+					if (res->next())
+					{
+						customerid = res->getInt(_T("customer_id"));
+						delete res;
+					}
+					else
+					{
+						stmt->execute(_T("ROLLBACK"));
+						goto destroy;
+					}
+
+					querystring = _T("SELECT staff_id FROM staff WHERE STRCMP(CONCAT(first_name,' ',last_name), '");
+					querystring += (LPCTSTR)pNewRent->clerk;
+					querystring += _T("') = 0");
+					res = stmt->executeQuery(querystring);
+					int staffid;
+					if (res->next())
+					{
+						staffid = res->getInt(_T("staff_id"));
+					}
+					else
+					{
+						stmt->execute(_T("ROLLBACK"));
+						goto destroy;
+					}
+
+					int time;
+					_stscanf_s(pNewRent->renttime, _T("%d"), &time);
+					strTemp.Format(_T("INSERT INTO rental(rental_date, inventory_id, customer_id, return_date, staff_id) ")
+						_T("VALUES(NOW(), %d, %d, DATE_ADD(NOW(),INTERVAL %d DAY), %d)"), inventoryid, customerid, time, staffid);
+					stmt->execute((LPCTSTR)strTemp);
+
+					stmt->execute(_T("COMMIT"));
+
+				destroy:delete stmt;
+					delete res;
+				}
+			}
+			catch (SQLException &e)
+			{
+				if (stmt != nullptr)
+				{
+					delete stmt;
+				}
+				if (res != nullptr)
+				{
+					delete res;
+				}
+				::MessageBox(NULL, e.what(), _T("提示"), MB_OK);
+			}
 		}
+		delete pNewRent;   // 由于在DoModal之后还需要使用NewRentInfo类中的信息，因此该类的销毁不在FinalMessage里面完成，在这里完成
 		return true;
 	}
 	return false;

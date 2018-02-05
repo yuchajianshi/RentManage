@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Window caption="0,0,0,30" roundcorner="5,5,5,5" sizebox="4,4,4,4" mininfo="600,320">
-    <Font id="0" name="宋体" size="13" bold="false"/>
-    <VerticalLayout bkimage="bk.jpg">
-        <Edit name="searchtext" font="0" padding="10,10,0,0" width="200" height="30" bkcolor="#FF476022" textcolor="#FFFF8000" borderround="2,2"/>
-    </VerticalLayout>
+    <Font id="0" name="宋体" size="50" bold="false"/>
+    <Edit bkimage="bk.jpg" font="0" text="This is a test." align="center" bkcolor="#80FF0000">
+    </Edit>
 </Window>
